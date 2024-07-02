@@ -1,0 +1,8 @@
+.hero-part{
+    background: linear-gradient(90deg, #FEE2DC 0%, #F3AAC9 100%)
+}
+.accordion-item-ans {
+    transition: max-height 0.3s ease;
+    overflow: hidden;
+  }
+  
