@@ -16,7 +16,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+AUTH_USER_MODEL = "userauth.User"
 # Application definition
 
 INSTALLED_APPS = [
@@ -27,6 +27,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'events',
+    'userauth',
+    #'dashboard',
+
 ]
 
 MIDDLEWARE = [
