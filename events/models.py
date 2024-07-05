@@ -1,6 +1,7 @@
 from django.db import models
 from momsinternational.basemodel import BaseModel
 
+
 # Create your models here.
 
 class Events(BaseModel, models.Model):

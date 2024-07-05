@@ -1,38 +1,14 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.core.exceptions import ValidationError
-from .models import User
-from django.contrib.auth import authenticate
+from userauth.models import User
 
-class CustomUserCreationForm(UserCreationForm):
-    class Meta:
-        model = User
-        fields = ['email', 'fullname', 'password1', 'password2']
+class LoginForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder' : 'test@example.com'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder' : '********'}))
 
-    def clean_email(self):
-        email = self.cleaned_data.get('email').lower()
-        if User.objects.filter(email=email).exists():
-            raise ValidationError("This email address is already in use.")
-        return email
 
-class UserLoginForm(forms.Form):
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
-
-    def clean_email(self):
-        email = self.cleaned_data.get('email').lower()
-        return email
-
-    def clean(self):
-        cleaned_data = super().clean()
-        email = cleaned_data.get('email')
-        password = cleaned_data.get('password')
-
-        if email and password:
-            user = authenticate(email=email, password=password)
-            if user is None:
-                raise ValidationError("Invalid email or password")
-            self.user = user
-
-    def get_user(self):
-        return getattr(self, 'user', None)
+class RegisterForm(forms.Form):
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder' : 'First Name'}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder' : 'Last Name'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder' : 'test@example.com'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder' : '********'}))
+    cpassword = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder' : '********'}))

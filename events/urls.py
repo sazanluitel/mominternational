@@ -1,7 +1,9 @@
 from django.contrib import admin
 from django.urls import path
-from . import views
+from events.views import *
+
+app_name="events"
 
 urlpatterns = [
-    path("", views.FrontPage, name= 'front_page'),
+    path("",FrontPage.as_view(), name='frontpage'),
 ]

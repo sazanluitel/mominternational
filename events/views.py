@@ -3,8 +3,12 @@ from django.views import View
 from events.models import Events
 from django.contrib import messages
 
-def FrontPage(request):
-    return render(request, 'index.html')
+
+class FrontPage(View):
+    def get(self, request, *args, **kwargs):
+     return render(request, 'index.html')
+    
+    
 
 def AddEvent(request):
     if request.method == 'POST':

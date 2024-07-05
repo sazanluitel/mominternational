@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'events',
     'userauth',
-    #'dashboard',
+    'dashboard',
 
 ]
 
@@ -40,6 +40,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+
+    'userauth.middleware.AccessCheck',
 ]
 
 ROOT_URLCONF = "momsinternational.urls"
