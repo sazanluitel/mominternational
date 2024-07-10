@@ -1,0 +1,64 @@
+{% extends "admin-base.html" %}
+{% block title %}Users{% endblock title %}
+{% block maintitle %}{{role_title}}{% endblock maintitle %}
+{% block beadcrumb %}{{role_title}}{% endblock beadcrumb %}
+
+{% block content %}
+<div class="col-sm-12">
+    <div class="card users-lists">
+        <div class="card-body">
+            {% with messages=messages %}
+            {% include 'alert.html' %}
+            {% endwith %}
+
+            <div class="dt-responsive">
+                <table class="ajaxdatatable table table-bordered nowrap"
+                    data-ajax="{% url 'dashboard:usersajax' %}" data-nodata="No {{role_title}} Found">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+
+                            {% if role == 'teacher' %}
+                            <th>Documents</th>
+                            <th>Extra Slots</th>
+                            {% endif %}
+
+                            <th>Last Active</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block footer %}
+<!-- Modal -->
+<div class="modal fade" id="extraTeacherSlotModal" tabindex="-1" aria-labelledby="extraTeacherSlotModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="extraTeacherSlotModalLabel">Teacher Extra Slot</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Course</label>
+                    <select class="form-control select2Product noselect2" data-placeholder="Select Course"
+                        id="selectcourse"></select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success exploreSlots">Explore Slots</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock footer %}
+    
