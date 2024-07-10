@@ -23,10 +23,15 @@
     <title>Moms International</title>
   </head>
   <body>
+    {% include 'website/parts/header.html' %}
     {% block content %}
 
     {% endblock %}
 
+      <!-- Footer Started -->
+  {% include 'website/parts/footer.html' %}
+  <!-- Footer Ended -->
+   
     <!-- Scripts -->
     <link rel="stylesheet" href="{% static 'js/index.js' %}" />
   </body>

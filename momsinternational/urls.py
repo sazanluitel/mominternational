@@ -5,5 +5,4 @@ urlpatterns = [
     # path("admin/", admin.site.urls),
     path("", include('events.urls')),
     path("", include('userauth.urls')),
-    path("", include('dashboard.urls')),
 ]

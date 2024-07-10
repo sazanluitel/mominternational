@@ -46,3 +46,11 @@ def AddEvent(request):
             messages.success(request, "Event enquiry is sent successfully! We will get back to you with the event details and budget.")
 
     return render(request, 'index.html')
+
+class AboutPage(View):
+    def get(self, request):
+        return render(request, 'website/pages/about.html')
+
+class ContactPage(View):
+    def get(self, request):
+        return render(request, 'website/pages/contact.html')

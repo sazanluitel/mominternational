@@ -1,0 +1,27 @@
+{% load static %}
+<header class="header w-full">
+  <div class="container mx-auto flex justify-between items-center mt-5">
+    <div class="logo mx-5 sm:mx-0">
+      <a href="{% url 'events:front_page' %}">
+
+        <img src="{% static 'img/logo-no-bg.png' %}" alt="logo" class="h-auto w-72" />
+      </a>
+    </div>
+    <div>
+      <ul class="hidden md:flex gap-20 items-center">
+        <li>
+          <a href="{% url 'events:front_page' %}">Home</a>
+        </li>
+        <li>
+          <a href="#">Events</a>
+        </li>
+        <li>
+          <a href="{% url 'events:about_page' %}">About Us</a>
+        </li>
+        <li class="bg-[#E63E2F] px-3 py-2 text-white font-bold rounded-sm hover:cursor-pointer">
+          <a href="{% url 'events:contact_page' %}">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
