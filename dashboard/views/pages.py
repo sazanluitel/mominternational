@@ -94,7 +94,7 @@ class AddPagesView(View):
             if not title:
                 raise Exception("Page title is required")
             
-            page = Post(
+            page = Event(
                 title=title,
                 slug=slug,
                 description=description,

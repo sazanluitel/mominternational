@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>{% block title %}Dashboard{% endblock %} - Moms Nepal</title>
-
+    <link rel="icon" href="{% static 'img/favicon.jpg' %}" type="image/jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -229,7 +229,7 @@
             <div class="ms-auto">
                 <ul class="list-unstyled">
                     <li class="ps-h-item">
-                        <a href="" class="ps-head-link me-0" target="_blank">
+                        <a href="{% url "events:frontpage" %}" class="ps-head-link me-0" target="_blank">
                             <i class="fa fa-globe"></i>
                         </a>
                     </li>
@@ -299,7 +299,7 @@
                                     </a>
                                     <hr class="border-secondary border-opacity-50" />
                                     <div class="d-grid mb-3">
-                                        <a class="btn btn-primary" href="">
+                                        <a class="btn btn-primary" href="{% url "userauth:logout" %}">
                                             <i class="fa-solid fa-arrow-right-from-bracket ps-icon me-2"></i> Logout
                                         </a>
                                     </div>

@@ -1,0 +1,251 @@
+{% extends "admin-base.html" %}
+{% block title %}{% if userid %}Edit{% else %}Add New{% endif %} {{role_title}}{% endblock title %}
+{% block maintitle %}{% if userid %}Edit{% else %}Add New{% endif %} {{role_title}}{% endblock maintitle %}
+{% block beadcrumb %}{% if userid %}Edit{% else %}Add New{% endif %} {{role_title}}{% endblock beadcrumb %}
+
+
+{% block content %}
+<form class="row" method="POST" action="{% if userid %}{% url 'dashboard:edituser' %}{% else %}{% url 'dashboard:adduser' %}{% endif %}">
+    {% csrf_token %}
+    <div class="col-md-9">
+
+        <div class="card">
+            <div class="card-body">
+                {% with messages=messages %}
+                    {% include 'alert.html' %}
+                {% endwith %}
+
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="firstNameInput">First Name <span
+                                    class="required">*</span></label>
+                            <input type="text" required value="{% if user.first_name %}{{user.first_name}}{% endif %}" name="first_name" class="form-control" id="firstNameInput"
+                                placeholder="First Name">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" required for="lastNameInput">Last Name <span
+                                    class="required">*</span></label>
+                            <input type="text" name="last_name" value="{% if user.last_name %}{{user.last_name}}{% endif %}" class="form-control" id="lastNameInput"
+                                placeholder="Last Name">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group mt-3">
+                            <label class="form-label" required for="emailInput">Email <span class="required">*</span></label>
+                            <input type="email" name="email" value="{% if user.email %}{{user.email}}{% endif %}" class="form-control" id="emailInput"
+                                placeholder="Email">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group mt-3">
+                            <label class="form-label" for="phoneInput">Phone Number</label>
+                            <input type="text" name="meta[phone]" value="{% if user.meta.phone %}{{user.meta.phone}}{% endif %}" class="form-control" id="phoneInput" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mt-3">
+                        <div class="form-group">
+                            <label class="form-label" for="roleInput">Role <span class="required">*</span></label>
+                            <select class="form-control" required name="role" id="roleInput">
+                                <option value="">Select Role</option>
+
+                                {% for rname, role_name in roles %}
+                                <option value="{{rname}}" {% if rname == role or user.role == rname %}selected {% endif %}>{{role_name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group mt-3">
+                            <label class="form-label" for="slugInput">Description</label>
+                            <textarea type="text" name="meta[description]" class="form-control tinymce"
+                                placeholder="Description . . . ">{% if user.meta.description %}{{user.meta.description}}{% endif %}
+                                </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Address Information</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label" for="address1Input">Address 1</label>
+                            <input type="text" class="form-control" value="{% if user.meta.address_one %}{{user.meta.address_one}}{% endif %}" name="meta[address_one]" id="address1Input">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mt-3">
+                        <div class="form-group mt-3">
+                            <label class="form-label" for="address1Input">Address 2</label>
+                            <input type="text" class="form-control" name="meta[address_two]" value="{% if user.meta.address_two %}{{user.meta.address_two}}{% endif %}" id="address2Input">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mt-3">
+                        <div class="form-group mt-3">
+                            <label class="form-label" for="cityInput">City</label>
+                            <input type="text" class="form-control" name="meta[city]" value="{% if user.meta.city %}{{user.meta.city}}{% endif %}" id="cityInput">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mt-3">
+                        <div class="form-group mt-3">
+                            <label class="form-label" for="zipCodeInput">Postcode / ZIP</label>
+                            <input type="text" class="form-control" name="meta[postcode]" value="{% if user.meta.postcode %}{{user.meta.postcode}}{% endif %}" id="zipCodeInput">
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mt-3">
+                        <div class="form-group mt-3">
+                            <label class="form-label" for="zipCodeInput">Country</label>
+                            <select name="meta[country]" class="form-control">
+                                {% for country in countries %}
+                                <option value="{{country.code}}" {% if user.meta.country == country.code %}selected{% endif %}>{{country.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Password Information</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="address1Input">Password {% if not userid %}<span class="required">*</span>{% endif %}</label>
+                            <input type="text" class="form-control" {% if not userid %}required{% endif %} value="{% if user.confidential.password %}{{user.confidential.password}}{% endif %}" name="confidential[password]" id="address1Input">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label" for="address1Input">Confirm Password {% if not userid %}<span class="required">*</span>{% endif %}</label>
+                            <input type="text" {% if not userid %}required{% endif %} class="form-control" value="{% if user.confidential.cpassword %}{{user.confidential.cpassword}}{% endif %}" name="confidential[cpassword]" id="address2Input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="button-group mt-4">
+
+                {% if userid %}
+                <button type="submit" class="btn btn-success px-5 py-2">Update {{role_title}}</button>
+                {% else %}
+                <button type="submit" class="btn btn-success px-5 py-2">Add New {{role_title}}</button>
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-title">User Status</div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label class="form-label" for="statusInput">Status <span class="required">*</span></label>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">Profile Image</div>
+            <div class="card-body">
+                {% with image=user.meta.profile_image %}
+                {% with name="meta[profile_image]" %}
+                {% include 'dashboard/image-pick.html' %}
+                {% endwith %}
+                {% endwith %}
+            </div>
+        </div>
+
+        <div class="card onlyforteacher d-none">
+            <div class="card-title">Commission</div>
+            <div class="card-body">
+                
+                <div class="form-group">
+                    <label class="form-label" for="commissionInput">Percentage</label>
+                    <input type="number" value="{% if user.meta.commission %}{{user.meta.commission}}{% endif %}" class="form-control" name="meta[commission]" id="commissionInput" placeholder="0">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card onlyforteacher d-none">
+            <div class="card-title">Documents</div>
+            <div class="card-body">
+
+                <div class="preview_docs">
+                    
+                    {% if user.meta.documents %}
+                        {% for doc in user.meta.documents %}
+                        <div data-index="{{ forloop.counter0 }}" class="doc_single" style="background-image:url('{{doc.img}}');">
+                            <div class="doc_name">{{doc.label}}</div>
+                            <input type="text" class="d-none" name="meta[documents][{{ forloop.counter0 }}][label]" value="{{doc.label}}" />
+                            <input type="text" class="d-none" name="meta[documents][{{ forloop.counter0 }}][img]" value="{{doc.img}}" />
+                            <div class="doc_close"><i class="fa fa-close"></i></div>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                        
+                </div>
+                
+                <div class="button-group text-center">
+                    <button type="button" class="btn btn-warning addNewDocBtn px-5 py-2">Add Document</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="docUploadModal" tabindex="-1" aria-labelledby="docUploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="docUploadModalLabel">Upload Document</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mb-3 w-100">
+                    <select name="document_type" class="form-control inmodal w-100">
+                        <option value="">Select Document Type</option>
+                        <option value="Citizenship">Citizenship</option>
+                        <option value="Driving License">Driving License</option>
+                        <option value="Passport">Passport</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                {% with name="user_document_pick" %}
+                    {% include 'dashboard/image-pick.html' %}
+                {% endwith %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary addDocumentToList">Add Document</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

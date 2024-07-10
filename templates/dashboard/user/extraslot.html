@@ -1,0 +1,115 @@
+{% extends "admin-base.html" %}
+{% load static %}
+{% block title %}Extra Slots{% endblock title %}
+{% block maintitle %}Extra Slots{% endblock maintitle %}
+
+{% block beadcumbfull %}
+<ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'dashboard:index' %}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'dashboard:edituser' role='teacher' id=teacher.id %}">{{teacher.get_full_name}}</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'dashboard:courses' %}">Courses</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'dashboard:editcourse' id=course.id %}">{{course.title}}</a></li>
+    <li class="breadcrumb-item" aria-current="page">Extra Slot</li>
+</ul>
+{% endblock beadcumbfull %}
+
+{% block content %}
+{% with messages=messages %}
+    {% include 'alert.html' %}
+{% endwith %}
+
+<div id="calendar"></div>
+{% endblock content %}
+
+
+{% block footer %}
+<!-- Modal -->
+<div class="modal fade" id="updateSlotModal" tabindex="-1" aria-labelledby="updateSlotModalLabel" aria-hidden="true">
+    <form class="modal-dialog" action="{% url 'dashboard:teacherextraslot' courseid=course.id userid=teacher.id %}" method="post">
+        {% csrf_token %}
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateSlotModalLabel">Slot</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="d-none" id="startdate" name="startdate">
+                <input type="text" class="d-none" id="slotid" name="slotid">
+
+                <div class="form-group">
+                    <label>Topic</label>
+                    <select required class="form-control select2slot noselect2" data-placeholder="Select Topic" name="topic" id="selecttopic" data-request="{% url 'dashboard:coursetopicsjson' courseid=course.id %}"></select>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label class="form-label">Start Time</label>
+
+                    <div class="input-group datetimepicker" data-format="hh:mm A">
+                        <input type="text" required id="starttime" name="starttime" class="form-control" placeholder="09:20" aria-label="Class Start Time"  aria-describedby="start_time">
+                        
+                        <div class="input-group-addon input-group-append input-group-text">
+                            <i class="fa fa-clock"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label class="form-label">End Time</label>
+
+                    <div class="input-group datetimepicker" data-format="hh:mm A">
+                        <input type="text" required id="endtime" class="form-control" placeholder="09:20" aria-label="Class End Time" name="endtime" aria-describedby="end_time">
+                        
+                        <div class="input-group-addon input-group-append input-group-text">
+                            <i class="fa fa-clock"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-title mb-0">Slot Pricing</div>
+                    <div class="card-body p-0">
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                {% for country in request.country_list %}
+                                    <button class="nav-link {% if country.default %}active{% endif %} rounded-0" id="nav-country-{{country.code}}-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-country-{{country.code}}" type="button" role="tab" aria-controls="nav-home"
+                                    aria-selected="{% if country.default %}true{% else %}false{% endif %}">{{country.name}} ({{country.currency}})</button>
+                                {% endfor %}
+                            </div>
+                        </nav>
+        
+                        <div class="tab-content" id="nav-tabContent">
+                            {% for country in request.country_list %}
+                            <div class="tab-pane fade {% if country.default %}show active{% endif %}" id="nav-country-{{country.code}}" role="tabpanel"
+                                aria-labelledby="nav-country-{{country.code}}-tab" tabindex="0">
+                                {% with country=country.code %}                                
+                                    {% include 'dashboard/course/pricing.html' %}
+                                {% endwith %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Add New Slot</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+<script>
+const batchInfo = {
+    courseid : {{course.id}},
+    batchid : "",
+    ajaxurl : "",
+    startdate : "",
+    enddate : "",
+    slots : {{slots | safe}}
+}
+</script>
+<script src="{% static 'js/slot.js' %}"></script>
+{% endblock footer %}
