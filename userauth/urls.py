@@ -1,4 +1,5 @@
 from django.urls import path
+from dashboard.views.pages import DashboardView
 from userauth.views import (
     LogoutView,
     LoginView,
@@ -12,6 +13,7 @@ from userauth.views import (
 app_name = "userauth"
 
 urlpatterns = [
+    path('admin/',DashboardView.as_view(), name='index'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('register/', RegisterView.as_view(), name='register'),
