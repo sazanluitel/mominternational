@@ -5,6 +5,7 @@ from dashboard.views.event import *
 app_name = "dashboard"
 
 urlpatterns = [
+    path('admin/',DashboardView.as_view(), name='index'),
     path('add',AddView.as_view(), name='add'),
     path('list',pagelistview.as_view(), name='list'),
     path('pageajax',PagesAjaxView.as_view(), name='pageajax'),

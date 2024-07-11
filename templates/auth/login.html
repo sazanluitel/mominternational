@@ -5,7 +5,7 @@
 <form class="theme-form" method="post" action="/login/">
     {% csrf_token %}
 
-    <h4>Sign in to account </h4>
+    <h4>Log in to account </h4>
     <p>Enter your email &amp; password to login</p>
 
     {% with messages=messages %}
@@ -37,12 +37,11 @@
                 <label class="form-check-label" for="rememberMe">Remember me</label>
             </div>
 
-            <a class="link" href="/forget-password/">Forgot password?</a>
+            <a class="link" href="{% url 'userauth:forgetpass' %}">Forgot password?</a>
         </div>
 
-        <div class="text-end mt-3">
-            <button class="btn btn-primary btn-block w-100" type="submit">Sign
-                in</button>
+        <div class="text-center mt-3">
+            <button class="btn btn-primary btn-block w-100 " type="submit">Log in</button>
         </div>
     </div>
     

@@ -12,6 +12,5 @@ class AccessCheck:
                 return redirect('userauth:login')  # Adjust the login URL as necessary
             if not request.user.is_staff:
                 return redirect('events:frontpage')
-        
         response = self.get_response(request)
         return response
