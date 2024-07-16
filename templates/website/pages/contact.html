@@ -25,7 +25,7 @@
 
     <div class="mx-auto py-5 px-6 sm:px-0">
       <div class="mb-6">
-        <h2 class="font-heading mb-4 font-bold text-2xl tracking-tight text-gray-900">Get in Touch</h2>
+        <h2 class="font-heading mb-4 font-bold text-2xl tracking-tight text-[#40130A]">Get in <span class="text-[#E43D2F]">Touch</span></h2>
       </div>
 
       <div class="get-in-touch">
@@ -34,7 +34,7 @@
             <p class="mt-3 mb-12 text-lg text-gray-600">If you have any queries please contact us.</p>
             <ul class="mb-6 md:mb-0">
               <li class="flex">
-                <div class="flex h-10 w-10 items-center justify-center rounded bg-green-600 text-gray-50">
+                <div class="flex h-10 w-10 items-center justify-center rounded text-[#E43D2F] ">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
                     <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
                     <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"></path>
@@ -47,7 +47,7 @@
                 </div>
               </li>
               <li class="flex">
-                <div class="flex h-10 w-10 items-center justify-center rounded bg-green-600 text-gray-50">
+                <div class="flex h-10 w-10 items-center justify-center rounded text-[#E43D2F] ">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
                     <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"></path>
                     <path d="M15 7a2 2 0 0 1 2 2"></path>
@@ -61,7 +61,7 @@
                 </div>
               </li>
               <li class="flex">
-                <div class="flex h-10 w-10 items-center justify-center rounded bg-green-600 text-gray-50">
+                <div class="flex h-10 w-10 items-center justify-center rounded text-[#E43D2F] ">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
                     <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
                     <path d="M12 7v5l3 3"></path>
@@ -76,7 +76,7 @@
             </ul>
           </div>
           <div class="card h-fit max-w-6xl p-2 md:p-5" id="form">
-            <h2 class="mb-4 text-2xl font-bold">Ready to Get Started?</h2>
+            <h2 class="mb-4 text-2xl font-bold text-[#40130A]">Ready to Get Started?</h2>
 
             {% comment %} {% for message in messages %}
               {% include 'alert.html' %}
@@ -98,12 +98,16 @@
                 </div>
               </div>
               <div class="text-center">
-                <button type="submit" class="w-full bg-green-500 text-white px-6 py-3 font-xl rounded-md sm:mb-0">Send Message</button>
+                <button type="submit" class="w-full bg-[#E43D2F] text-white px-6 py-3 font-xl rounded-md sm:mb-0">Send Message</button>
               </div>
             </form>
           </div>
         </div>
       </div>
+    </div>
+    <div class="map-section container mx-auto max-w-full">
+      <h2 class="font-heading mb-4 font-bold text-4xl tracking-tight text-[#40130A] text-center ">Locate <span class="text-[#E43D2F]">Us</span></h2>
+      <iframe class="w-full rounded-t-xl" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d56507.67394876879!2d85.27849658521727!3d27.725633193132303!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19002bd65925%3A0xe2a997b667b67932!2sSayathari%20Media!5e0!3m2!1sne!2snp!4v1721096452050!5m2!1sne!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </section>
 {% endblock %}
