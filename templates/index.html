@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-  <section class="hero-part mt-10 container mx-auto sm:grid sm:grid-cols-2 rounded-t-3xl">
+  <section class="hero-part mt-10 container mx-auto md:flex md:flex-wrap rounded-t-3xl">
     <div class="hero-text-part px-10 pt-10 md:px-24 md:pt-32 col-span-1 mx-5 sm:mx-0">
       <div class="text-[#40130A] font-bold text-4xl sm:text-7xl md:leading-[5.5rem]">
         Organization <br /><span class="text-[#E63E2F]">of Events</span>
@@ -11,8 +11,8 @@
         <button class="bg-[#E63E2F] text-white font-bold px-10 py-3 rounded-sm hover:cursor-pointer mt-10 mb-24">What we offer</button>
       </div>
     </div>
-    <div class="hero-img col-span-1 hidden md:block relative mx-5 sm:mx-0">
-      <img class="absolute left-[68px]" src="{% static 'img/contestent.png' %}" alt="" />
+    <div class="hero-img col-span-1 hidden lg:block relative mx-5 sm:mx-0">
+      <img class="left-[47px] max-w-96" src="{% static 'img/contestent.png' %}" alt="" />
     </div>
   </section>
   <!-- Herosection ended -->
@@ -124,45 +124,28 @@
       </p>
       <p class="text-gray-600 mt-6 mx-5 sm:mx-0 md:px-28 text-justify">We believe that every event should be a seamless and memorable experience. Our comprehensive planning process ensures that every detail is meticulously taken care of. Here’s how we bring your event vision to life:</p>
     </div>
-    <div class="accordion">
-      <div class="relative mb-3">
-        <h6 class="mb-0">
-          <button class="relative flex items-center w-full p-4 font-semibold text-left transition-all ease-in border-b border-solid cursor-pointer border-slate-100 text-slate-700 rounded-t-1 group text-dark-500" data-collapse-target="collapse-1">
-            <span>Initial Consultation</span>
-            <i class="absolute right-0 pt-1 text-xs fa fa-plus group-open:opacity-0"></i>
-            <i class="absolute right-0 pt-1 text-xs opacity-0 fa fa-minus group-open:opacity-100"></i>
-          </button>
-        </h6>
-        <div data-collapse="collapse-1" class="h-0 overflow-hidden transition-all duration-300 ease-in-out">
-          <div class="p-4 text-sm leading-normal text-blue-gray-500/80">Discussion: Event type, theme, budget, and timeline.</div>
-        </div>
-      </div>
-      <div class="relative mb-3">
-        <h6 class="mb-0">
-          <button class="relative flex items-center w-full p-4 font-semibold text-left transition-all ease-in border-b border-solid cursor-pointer border-slate-100 text-slate-700 rounded-t-1 group text-dark-500" data-collapse-target="collapse-2">
-            <span>Venue Selection</span>
-            <i class="absolute right-0 pt-1 text-xs fa fa-plus group-open:opacity-0"></i>
-            <i class="absolute right-0 pt-1 text-xs opacity-0 fa fa-minus group-open:opacity-100"></i>
-          </button>
-        </h6>
-        <div data-collapse="collapse-2" class="h-0 overflow-hidden transition-all duration-300 ease-in-out">
-          <div class="p-4 text-sm leading-normal text-blue-gray-500/80">Recommendations: Matching venues to your theme and budget. Site Visits & Negotiation: Arranging tours and securing the best rates.</div>
-        </div>
-      </div>
-      <div class="relative mb-3">
-        <h6 class="mb-0">
-          <button class="relative flex items-center w-full p-4 font-semibold text-left transition-all ease-in border-b border-solid cursor-pointer border-slate-100 text-slate-700 rounded-t-1 group text-dark-500" data-collapse-target="collapse-3">
-            <span>Vendor Coordination</span>
-            <i class="absolute right-0 pt-1 text-xs fa fa-plus group-open:opacity-0"></i>
-            <i class="absolute right-0 pt-1 text-xs opacity-0 fa fa-minus group-open:opacity-100"></i>
-          </button>
-        </h6>
-        <div data-collapse="collapse-3" class="h-0 overflow-hidden transition-all duration-300 ease-in-out">
-          <div class="p-4 text-sm leading-normal text-blue-gray-500/80">Catering & Decor: Custom menus and beautiful decorations. Entertainment: DJs, bands, and performers. Photography: Capturing every moment.</div>
-        </div>
-      </div>
+    <div class="accordion max-w-[85%] mx-auto">
+      <details class="border-2 rounded p-3 cursor-pointer text-slate-700 border-slate-100 mt-3 max-w-50%">
+        <summary class="font-semibold flex justify-between">Inital Consulation <span class="sign text-2xl font-bold">+</span></summary>
+        <p class="">Discussion: Event type, theme, budget, and timeline. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil rerum ipsum autem dolores facilis eaque molestiae a, adipisci reiciendis laboriosam!</p>
+      </details>
+      <details class="border-2 rounded p-3 cursor-pointer text-slate-700 border-slate-100 mt-3 max-w-50%">
+        <summary class="font-semibold flex justify-between">Venue Selection <span class="sign text-2xl font-bold">+</span></summary>
+        <p class="">Discussion: Event type, theme, budget, and timeline. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil rerum ipsum autem dolores facilis eaque molestiae a, adipisci reiciendis laboriosam!</p>
+      </details>
+      <details class="border-2 rounded p-3 cursor-pointer text-slate-700 border-slate-100 mt-3 max-w-50%">
+        <summary class="font-semibold flex justify-between">Venue Planning <span class="sign text-2xl font-bold">+</span></summary>
+        <p class="">Discussion: Event type, theme, budget, and timeline. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil rerum ipsum autem dolores facilis eaque molestiae a, adipisci reiciendis laboriosam!</p>
+      </details>
+      <details class="border-2 rounded p-3 cursor-pointer text-slate-700 border-slate-100 mt-3 max-w-50%">
+        <summary class="font-semibold flex justify-between">Event Planning <span class="sign text-2xl font-bold">+</span></summary>
+        <p class="">Discussion: Event type, theme, budget, and timeline. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil rerum ipsum autem dolores facilis eaque molestiae a, adipisci reiciendis laboriosam!</p>
+      </details>
+      <details class="border-2 rounded p-3 cursor-pointer text-slate-700 border-slate-100 mt-3 max-w-50%">
+        <summary class="font-semibold flex justify-between">Financial Planning <span class="sign text-2xl font-bold">+</span></summary>
+        <p class="">Discussion: Event type, theme, budget, and timeline. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil rerum ipsum autem dolores facilis eaque molestiae a, adipisci reiciendis laboriosam!</p>
+      </details>
     </div>
   </section>
   <!-- Planning ended -->
-
 {% endblock %}
