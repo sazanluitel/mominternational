@@ -3,7 +3,11 @@
   <div class="container mx-auto flex justify-between items-center mt-5">
     <div class="logo mx-5 sm:mx-0">
       <a href="{% url 'events:frontpage' %}">
-        <img src="{% static 'img/logo-no-bg.png' %}" alt="logo" class="h-auto w-72" />
+        <img
+          src="{% static 'img/logo-no-bg.png' %}"
+          alt="logo"
+          class="h-auto w-72"
+        />
       </a>
     </div>
     <div>
@@ -17,8 +21,13 @@
         <li>
           <a href="{% url 'events:aboutpage' %}">About Us</a>
         </li>
-        <li class="bg-[#E63E2F] px-3 py-2 text-white font-bold rounded-sm hover:cursor-pointer">
+        <li>
           <a href="{% url 'events:contactpage' %}">Contact Us</a>
+        </li>
+        <li
+          class="bg-[#E63E2F] px-3 py-2 text-white font-bold rounded-sm hover:cursor-pointer"
+        >
+          <a href="#">Get Started</a>
         </li>
       </ul>
     </div>

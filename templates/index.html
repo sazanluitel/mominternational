@@ -1,168 +1,299 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
-  <section class="hero-part mt-10 container mx-auto sm:grid sm:grid-cols-2 rounded-t-3xl">
-    <div class="hero-text-part px-10 pt-10 md:px-24 md:pt-32 col-span-1 mx-5 sm:mx-0">
-      <div class="text-[#40130A] font-bold text-4xl sm:text-7xl md:leading-[5.5rem]">
-        Organization <br /><span class="text-[#E63E2F]">of Events</span>
-      </div>
-      <p class="text-gray-500 max-w-[35rem] mt-10">We guide you through the process of creating and assisting with everything form the budget to the overall events and Programms. Our main goal is for our clients to enjoy their engagement and lean on our team to bring their vison to life.</p>
-      <div class="hero-btn">
-        <button class="bg-[#E63E2F] text-white font-bold px-10 py-3 rounded-sm hover:cursor-pointer mt-10 mb-24">What we offer</button>
-      </div>
+{% extends 'base.html' %} {% load static %} {% block content %}
+<section
+  class="hero-part mt-10 container mx-auto md:flex md:flex-wrap rounded-t-3xl"
+>
+  <div
+    class="hero-text-part px-10 pt-10 md:px-24 md:pt-32 col-span-1 mx-5 sm:mx-0"
+  >
+    <div
+      class="text-[#40130A] font-bold text-4xl sm:text-7xl md:leading-[5.5rem]"
+    >
+      Organization <br /><span class="text-[#E63E2F]">of Events</span>
     </div>
-    <div class="hero-img col-span-1 hidden md:block relative mx-5 sm:mx-0">
-      <img class="absolute left-[68px]" src="{% static 'img/contestent.png' %}" alt="" />
-    </div>
-  </section>
-  <!-- Herosection ended -->
-
-  <!-- Events card started -->
-  <section class="events container mx-auto md:grid md:grid-cols-3 gap-4 mt-20">
-    <div class="events-card col-span-2 mx-5 sm:mx-0">
-      <div class="grid grid-cols-2 gap-4">
-        <div class="events-card bg-gray-50 shadow-sm text-center py-7 px-3">
-          <i class="las la-crown text-[#E63E2F] text-8xl"></i>
-          <p class="text-[#40130A] font-bold py-5 text-2xl">Miss Nepal</p>
-          <p class="text-start">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam dolorem eligendi consequatur, suscipit incidunt quis.</p>
-        </div>
-        <div class="events-card bg-gray-50 shadow-sm text-center py-7 px-3">
-          <i class="las la-user-friends text-[#E63E2F] text-8xl"></i>
-          <p class="text-[#40130A] font-bold py-5 text-2xl">Marriage</p>
-          <p class="text-start">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam dolorem eligendi consequatur, suscipit incidunt quis.</p>
-        </div>
-        <div class="events-card bg-gray-50 shadow-sm text-center py-7 px-3">
-          <i class="las la-birthday-cake text-[#E63E2F] text-8xl"></i>
-          <p class="text-[#40130A] font-bold py-5 text-2xl">Birthday</p>
-          <p class="text-start">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam dolorem eligendi consequatur, suscipit incidunt quis.</p>
-        </div>
-        <div class="events-card bg-gray-50 shadow-sm text-center py-7 px-3">
-          <i class="las la-glass-cheers text-[#E63E2F] text-8xl"></i>
-          <p class="text-[#40130A] font-bold py-5 text-2xl">Partying</p>
-          <p class="text-start">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam dolorem eligendi consequatur, suscipit incidunt quis.</p>
-        </div>
-      </div>
-    </div>
-    <div class="bg-cover mx-5 sm:mx-0 bg-top rounded bg-no-repeat relative" style="background-image: linear-gradient(to bottom, rgba(234, 88, 12, 0.5), transparent), url({% static 'img/G10.jpg' %});">
-      <div class="bg-black bg-opacity-50 pt-96 h-full rounded">
-        <div class="container mx-auto text-center text-white max-w-[550px]">
-          <h1 class="text-4xl font-bold mb-5 text-center">The Best Event <br /><span class="text-[#E63E2F]">Planner</span></h1>
-          <p class="text-xl mb-2">Plan yout events from us.</p>
-          <a href="#"><button class="bg-green-600 btn_effect text-white px-6 py-3 rounded mb-8">Plan Events</button></a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Events card ended -->
-
-  <!-- ortifilio started -->
-  <section class="mt-20 container mx-auto">
-    <p class="text-[#E63E2F] font-bold text-center">PORTFOLIO</p>
-    <p class="font-bold text-center text-4xl text-[#40130A]">
-      Our Latest <span class="text-[#E63E2F]">Events</span>
+    <p class="text-gray-500 max-w-[35rem] mt-10">
+      We guide you through the process of creating and assisting with everything
+      form the budget to the overall events and Programms. Our main goal is for
+      our clients to enjoy their engagement and lean on our team to bring their
+      vison to life.
     </p>
+    <div class="hero-btn">
+      <button
+        class="bg-[#E63E2F] text-white font-bold px-10 py-3 rounded-sm hover:cursor-pointer mt-10 mb-24"
+      >
+        What we offer
+      </button>
+    </div>
+  </div>
+  <div class="hero-img col-span-1 hidden lg:block relative mx-5 sm:mx-0">
+    <img
+      class="left-[47px] max-w-96"
+      src="{% static 'img/contestent.png' %}"
+      alt=""
+    />
+  </div>
+</section>
+<!-- Herosection ended -->
 
-    <div class="grid grid-cols-3 gap-4 mt-10 mx-5 sm:mx-0">
-      <div class="grid gap-4">
-        <div>
-          <img class="h-auto max-w-full rounded-lg" src="{% static 'img/G1.jpg' %}" alt="" />
-        </div>
-        <div>
-          <img class="h-auto max-w-full rounded-lg" src="{% static 'img/G2.jpg' %}" alt="" />
-        </div>
-        <div>
-          <img class="h-auto max-w-full rounded-lg" src="{% static 'img/G3.jpg' %}" alt="" />
-        </div>
+<!-- Events card started -->
+<section class="events container mx-auto md:grid md:grid-cols-3 gap-4 mt-20">
+  <div class="events-card col-span-2 mx-5 sm:mx-0">
+    <div class="grid grid-cols-2 gap-4">
+      <div class="events-card bg-gray-50 shadow-sm text-center py-7 px-3">
+        <i class="las la-crown text-[#E63E2F] text-8xl"></i>
+        <p class="text-[#40130A] font-bold py-5 text-2xl">Miss Nepal</p>
+        <p class="text-start">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam
+          dolorem eligendi consequatur, suscipit incidunt quis.
+        </p>
       </div>
-      <div class="grid gap-4">
-        <div>
-          <img class="h-auto max-w-full rounded-lg" src="{% static 'img/G5.jpg' %}" alt="" />
-        </div>
-        <div>
-          <img class="h-auto max-w-full rounded-lg" src="{% static 'img/G4.jpg' %}" alt="" />
-        </div>
-        <div>
-          <img class="h-auto max-w-full rounded-lg" src="{% static 'img/G6.jpg' %}" alt="" />
-        </div>
-        <div>
-          <img class="h-auto max-w-full rounded-lg" src="{% static 'img/G5.jpg' %}" alt="" />
-        </div>
+      <div class="events-card bg-gray-50 shadow-sm text-center py-7 px-3">
+        <i class="las la-user-friends text-[#E63E2F] text-8xl"></i>
+        <p class="text-[#40130A] font-bold py-5 text-2xl">Marriage</p>
+        <p class="text-start">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam
+          dolorem eligendi consequatur, suscipit incidunt quis.
+        </p>
       </div>
-      <div class="grid gap-4">
-        <div>
-          <img class="h-auto max-w-full rounded-lg" src="{% static 'img/G7.jpg' %}" alt="" />
-        </div>
-        <div>
-          <img class="h-auto max-w-full rounded-lg" src="{% static 'img/G8.jpg' %}" alt="" />
-        </div>
-        <div>
-          <img class="h-auto max-w-full rounded-lg" src="{% static 'img/G9.jpg' %}" alt="" />
-        </div>
+      <div class="events-card bg-gray-50 shadow-sm text-center py-7 px-3">
+        <i class="las la-birthday-cake text-[#E63E2F] text-8xl"></i>
+        <p class="text-[#40130A] font-bold py-5 text-2xl">Birthday</p>
+        <p class="text-start">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam
+          dolorem eligendi consequatur, suscipit incidunt quis.
+        </p>
       </div>
-    </div>
-  </section>
-  <!-- portifilio ended -->
-  <!-- Celebration started -->
-  <section class="mt-20">
-    <div class="bg-cover bg-top rounded bg-no-repeat relative mt-12" style="background-image: linear-gradient(to bottom, rgba(234, 88, 12, 0.5), transparent), url({% static 'img/G5.jpg' %});">
-      <div class="bg-black bg-opacity-50 py-32 rounded">
-        <div class="container mx-auto text-center text-white max-w-[550px]">
-          <h1 class="text-4xl font-bold mb-4">Connect with us</h1>
-          <p class="text-xl mb-6">Celebrate yout moments with us. We gurantee the best events management with better finance</p>
-          <a href="#"><button class="bg-green-600 btn_effect text-white px-6 py-3 rounded">Connect</button></a>
-        </div>
+      <div class="events-card bg-gray-50 shadow-sm text-center py-7 px-3">
+        <i class="las la-glass-cheers text-[#E63E2F] text-8xl"></i>
+        <p class="text-[#40130A] font-bold py-5 text-2xl">Partying</p>
+        <p class="text-start">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam
+          dolorem eligendi consequatur, suscipit incidunt quis.
+        </p>
       </div>
     </div>
-  </section>
-  <!-- Celebration ended -->
-  <!-- Planning Events stared -->
-  <section class="container mx-auto mt-20">
-    <div class="text-center w-full">
-      <p class="text-[#E63E2F] font-bold text-center">PLANNNING</p>
-      <p class="font-bold text-4xl text-[#40130A]">
-        How We Plan <span class="text-[#E63E2F]">Your Event</span>
+  </div>
+  <div
+    class="bg-cover mx-5 sm:mx-0 bg-top rounded bg-no-repeat relative"
+    style="
+      background-image: linear-gradient(
+          to bottom,
+          rgba(234, 88, 12, 0.5),
+          transparent
+        ),
+        url({%static'img/G10.jpg'%});
+    "
+  >
+    <div class="bg-black bg-opacity-50 pt-96 h-full rounded">
+      <div class="container mx-auto text-center text-white max-w-[550px]">
+        <h1 class="text-4xl font-bold mb-5 text-center">
+          The Best Event <br /><span class="text-[#E63E2F]">Planner</span>
+        </h1>
+        <p class="text-xl mb-2">Plan yout events from us.</p>
+        <a href="#"
+          ><button
+            class="bg-green-600 btn_effect text-white px-6 py-3 rounded mb-8"
+          >
+            Plan Events
+          </button></a
+        >
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Events card ended -->
+
+<!-- ortifilio started -->
+<section class="mt-20 container mx-auto">
+  <p class="text-[#E63E2F] font-bold text-center">PORTFOLIO</p>
+  <p class="font-bold text-center text-4xl text-[#40130A]">
+    Our Latest <span class="text-[#E63E2F]">Events</span>
+  </p>
+
+  <div class="grid grid-cols-3 gap-4 mt-10 mx-5 sm:mx-0">
+    <div class="grid gap-4">
+      <div>
+        <img
+          class="h-auto max-w-full rounded-lg"
+          src="{% static 'img/G1.jpg' %}"
+          alt=""
+        />
+      </div>
+      <div>
+        <img
+          class="h-auto max-w-full rounded-lg"
+          src="{% static 'img/G2.jpg' %}"
+          alt=""
+        />
+      </div>
+      <div>
+        <img
+          class="h-auto max-w-full rounded-lg"
+          src="{% static 'img/G3.jpg' %}"
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="grid gap-4">
+      <div>
+        <img
+          class="h-auto max-w-full rounded-lg"
+          src="{% static 'img/G5.jpg' %}"
+          alt=""
+        />
+      </div>
+      <div>
+        <img
+          class="h-auto max-w-full rounded-lg"
+          src="{% static 'img/G4.jpg' %}"
+          alt=""
+        />
+      </div>
+      <div>
+        <img
+          class="h-auto max-w-full rounded-lg"
+          src="{% static 'img/G6.jpg' %}"
+          alt=""
+        />
+      </div>
+      <div>
+        <img
+          class="h-auto max-w-full rounded-lg"
+          src="{% static 'img/G5.jpg' %}"
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="grid gap-4">
+      <div>
+        <img
+          class="h-auto max-w-full rounded-lg"
+          src="{% static 'img/G7.jpg' %}"
+          alt=""
+        />
+      </div>
+      <div>
+        <img
+          class="h-auto max-w-full rounded-lg"
+          src="{% static 'img/G8.jpg' %}"
+          alt=""
+        />
+      </div>
+      <div>
+        <img
+          class="h-auto max-w-full rounded-lg"
+          src="{% static 'img/G9.jpg' %}"
+          alt=""
+        />
+      </div>
+    </div>
+  </div>
+</section>
+<!-- portifilio ended -->
+<!-- Celebration started -->
+<section class="mt-20">
+  <div
+    class="bg-cover bg-top rounded bg-no-repeat relative mt-12"
+    style="
+      background-image: linear-gradient(
+          to bottom,
+          rgba(234, 88, 12, 0.5),
+          transparent
+        ),
+        url({%static'img/G5.jpg'%});
+    "
+  >
+    <div class="bg-black bg-opacity-50 py-32 rounded">
+      <div class="container mx-auto text-center text-white max-w-[550px]">
+        <h1 class="text-4xl font-bold mb-4">Connect with us</h1>
+        <p class="text-xl mb-6">
+          Celebrate yout moments with us. We gurantee the best events management
+          with better finance
+        </p>
+        <a href="#"
+          ><button class="bg-green-600 btn_effect text-white px-6 py-3 rounded">
+            Connect
+          </button></a
+        >
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Celebration ended -->
+<!-- Planning Events stared -->
+<section class="container mx-auto mt-20">
+  <div class="text-center w-full">
+    <p class="text-[#E63E2F] font-bold text-center">PLANNNING</p>
+    <p class="font-bold text-4xl text-[#40130A]">
+      How We Plan <span class="text-[#E63E2F]">Your Event</span>
+    </p>
+    <p class="text-gray-600 mt-6 mx-5 sm:mx-0 md:px-28 text-justify">
+      We believe that every event should be a seamless and memorable experience.
+      Our comprehensive planning process ensures that every detail is
+      meticulously taken care of. Here’s how we bring your event vision to life:
+    </p>
+  </div>
+  <div class="accordion max-w-[85%] mx-auto">
+    <details
+      class="border-2 rounded p-3 cursor-pointer text-slate-700 border-slate-100 mt-3 max-w-50%"
+    >
+      <summary class="font-semibold flex justify-between">
+        Inital Consulation <span class="sign text-2xl font-bold">+</span>
+      </summary>
+      <p class="">
+        Discussion: Event type, theme, budget, and timeline. Lorem, ipsum dolor
+        sit amet consectetur adipisicing elit. Nihil rerum ipsum autem dolores
+        facilis eaque molestiae a, adipisci reiciendis laboriosam!
       </p>
-      <p class="text-gray-600 mt-6 mx-5 sm:mx-0 md:px-28 text-justify">We believe that every event should be a seamless and memorable experience. Our comprehensive planning process ensures that every detail is meticulously taken care of. Here’s how we bring your event vision to life:</p>
-    </div>
-    <div class="accordion">
-      <div class="relative mb-3">
-        <h6 class="mb-0">
-          <button class="relative flex items-center w-full p-4 font-semibold text-left transition-all ease-in border-b border-solid cursor-pointer border-slate-100 text-slate-700 rounded-t-1 group text-dark-500" data-collapse-target="collapse-1">
-            <span>Initial Consultation</span>
-            <i class="absolute right-0 pt-1 text-xs fa fa-plus group-open:opacity-0"></i>
-            <i class="absolute right-0 pt-1 text-xs opacity-0 fa fa-minus group-open:opacity-100"></i>
-          </button>
-        </h6>
-        <div data-collapse="collapse-1" class="h-0 overflow-hidden transition-all duration-300 ease-in-out">
-          <div class="p-4 text-sm leading-normal text-blue-gray-500/80">Discussion: Event type, theme, budget, and timeline.</div>
-        </div>
-      </div>
-      <div class="relative mb-3">
-        <h6 class="mb-0">
-          <button class="relative flex items-center w-full p-4 font-semibold text-left transition-all ease-in border-b border-solid cursor-pointer border-slate-100 text-slate-700 rounded-t-1 group text-dark-500" data-collapse-target="collapse-2">
-            <span>Venue Selection</span>
-            <i class="absolute right-0 pt-1 text-xs fa fa-plus group-open:opacity-0"></i>
-            <i class="absolute right-0 pt-1 text-xs opacity-0 fa fa-minus group-open:opacity-100"></i>
-          </button>
-        </h6>
-        <div data-collapse="collapse-2" class="h-0 overflow-hidden transition-all duration-300 ease-in-out">
-          <div class="p-4 text-sm leading-normal text-blue-gray-500/80">Recommendations: Matching venues to your theme and budget. Site Visits & Negotiation: Arranging tours and securing the best rates.</div>
-        </div>
-      </div>
-      <div class="relative mb-3">
-        <h6 class="mb-0">
-          <button class="relative flex items-center w-full p-4 font-semibold text-left transition-all ease-in border-b border-solid cursor-pointer border-slate-100 text-slate-700 rounded-t-1 group text-dark-500" data-collapse-target="collapse-3">
-            <span>Vendor Coordination</span>
-            <i class="absolute right-0 pt-1 text-xs fa fa-plus group-open:opacity-0"></i>
-            <i class="absolute right-0 pt-1 text-xs opacity-0 fa fa-minus group-open:opacity-100"></i>
-          </button>
-        </h6>
-        <div data-collapse="collapse-3" class="h-0 overflow-hidden transition-all duration-300 ease-in-out">
-          <div class="p-4 text-sm leading-normal text-blue-gray-500/80">Catering & Decor: Custom menus and beautiful decorations. Entertainment: DJs, bands, and performers. Photography: Capturing every moment.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Planning ended -->
-
+    </details>
+    <details
+      class="border-2 rounded p-3 cursor-pointer text-slate-700 border-slate-100 mt-3 max-w-50%"
+    >
+      <summary class="font-semibold flex justify-between">
+        Venue Selection <span class="sign text-2xl font-bold">+</span>
+      </summary>
+      <p class="">
+        Discussion: Event type, theme, budget, and timeline. Lorem, ipsum dolor
+        sit amet consectetur adipisicing elit. Nihil rerum ipsum autem dolores
+        facilis eaque molestiae a, adipisci reiciendis laboriosam!
+      </p>
+    </details>
+    <details
+      class="border-2 rounded p-3 cursor-pointer text-slate-700 border-slate-100 mt-3 max-w-50%"
+    >
+      <summary class="font-semibold flex justify-between">
+        Venue Planning <span class="sign text-2xl font-bold">+</span>
+      </summary>
+      <p class="">
+        Discussion: Event type, theme, budget, and timeline. Lorem, ipsum dolor
+        sit amet consectetur adipisicing elit. Nihil rerum ipsum autem dolores
+        facilis eaque molestiae a, adipisci reiciendis laboriosam!
+      </p>
+    </details>
+    <details
+      class="border-2 rounded p-3 cursor-pointer text-slate-700 border-slate-100 mt-3 max-w-50%"
+    >
+      <summary class="font-semibold flex justify-between">
+        Event Planning <span class="sign text-2xl font-bold">+</span>
+      </summary>
+      <p class="">
+        Discussion: Event type, theme, budget, and timeline. Lorem, ipsum dolor
+        sit amet consectetur adipisicing elit. Nihil rerum ipsum autem dolores
+        facilis eaque molestiae a, adipisci reiciendis laboriosam!
+      </p>
+    </details>
+    <details
+      class="border-2 rounded p-3 cursor-pointer text-slate-700 border-slate-100 mt-3 max-w-50%"
+    >
+      <summary class="font-semibold flex justify-between">
+        Financial Planning <span class="sign text-2xl font-bold">+</span>
+      </summary>
+      <p class="">
+        Discussion: Event type, theme, budget, and timeline. Lorem, ipsum dolor
+        sit amet consectetur adipisicing elit. Nihil rerum ipsum autem dolores
+        facilis eaque molestiae a, adipisci reiciendis laboriosam!
+      </p>
+    </details>
+  </div>
+</section>
+<!-- Planning ended -->
 {% endblock %}
