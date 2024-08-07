@@ -7,48 +7,17 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.core.paginator import Paginator
+from events.models import Events
+
+from django.views.generic import View
+from django.http import JsonResponse
+from django.db.models import Q
+
 # Create your views here.
 
 class DashboardView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'dashboard/index.html')
-
-class AddView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'dashboard/page/add.html')
-
-class pagelistview(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'dashboard/page/list.html')
-
-# class PagesAjaxView(View):
-#     def get(self, request, *args, **kwargs):
-#         return render(request, 'dashboard/page/list.html')
-
-# create post view
-class AddpostView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'dashboard/post/add.html')
-    
-class PostView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'dashboard/post/list.html')
-
-class PostAjaxView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'dashboard/post/list.html')
-    
-class CourseAdd(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'dashboard/course/add.html')
-
-class CourseView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'dashboard/course/list.html')
-
-class CourseAjaxView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'dashboard/course/list.html')
 
 class Adduser(View):
     def get(self, request, *args, **kwargs):
@@ -65,14 +34,6 @@ class UsersAjax(View):
 class Settings(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'dashboard/settings/general.html')
-    
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import View
-from django.contrib import messages
-from django.http import JsonResponse
-from django.core.paginator import Paginator
-from django.urls import reverse
-from django.db.models import Q
 
 # Create your views here.
 class PagesView(View):
@@ -94,7 +55,7 @@ class AddPagesView(View):
             if not title:
                 raise Exception("Page title is required")
             
-            page = Event(
+            page = Events(
                 title=title,
                 slug=slug,
                 description=description,
@@ -129,20 +90,6 @@ class PagesAjaxView(View):
             </div>
         '''
     
-    def get_status(self, status, post_id):
-        status_options = ''
-        for value, label in STATUS:
-            selected = 'selected' if value == status else ''
-            status_options += f'<option value="{value}" {selected}>{label}</option>'
-            
-        return f'''
-            <div class="form-group" style="max-width:100%">
-                <select name="status" style="width:100%;max-width:100%;" class="form-control form-select changeAdminPostStatus" data-id="{post_id}" data-placeholder="Course Status">
-                {status_options}
-                </select>
-            </div>
-        '''
-    
     def get_action(self, post_id):
         edit_url = reverse('dashboard:editpage', kwargs={'id': post_id})
         delete_url = reverse('dashboard:delete')
@@ -166,7 +113,7 @@ class PagesAjaxView(View):
         search_value = request.GET.get('search[value]', None)
         page_number = (start // length) + 1
 
-        posts = Post.objects.filter(post_type="page")
+        posts = Events.objects.filter(post_type="page")
         if search_value:
             posts = posts.filter(Q(title__icontains=search_value) | Q(description__icontains=search_value) | Q(slug__icontains=search_value))
         posts = posts.order_by('-date')
@@ -195,7 +142,7 @@ class EditPagesView(View):
         pageid = kwargs.get('id')
         
         try:
-            page = get_object_or_404(Post, id=pageid)
+            page = get_object_or_404(Events, id=pageid)
             return render(request, 'dashboard/page/add.html', context={
                 "postid" : page.id,
                 "title" : page.title,
@@ -217,7 +164,7 @@ class EditPagesView(View):
         postid = kwargs.get('id')
         
         try:
-            page = get_object_or_404(Post, id=postid)
+            page = get_object_or_404(Events, id=postid)
             if not title:
                 raise Exception("Page title is required")
             
@@ -232,3 +179,5 @@ class EditPagesView(View):
             messages.error(request, str(e))
 
         return redirect('dashboard:editpage', id=postid)
+
+

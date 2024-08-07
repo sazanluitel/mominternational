@@ -16,55 +16,67 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 @method_decorator(csrf_exempt, name='dispatch')
 
 # Create your views here.
-class EventView(PermissionRequiredMixin, View):
+class EventView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'dashboard/event/list.html')
+        return render(request, 'dashboard/events/list.html')
     
 
 class AddEventView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'dashboard/event/add.html')
+        return render(request, 'dashboard/events/add.html')
     
     def post(self, request, *args, **kwargs):
         title = request.POST.get('title')
         slug = request.POST.get('slug')
         description = request.POST.get('description')
-        status = request.POST.get('status')
         categories = request.POST.getlist('category[]')
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+        no_of_people = request.POST.get('no_of_people')
+        locations = request.POST.get('locations')
+        budget = request.POST.get('budget')
         
         try:
             if not title:
                 raise Exception("Event title is required")
             
-            post = Events(
+            event = Events(
                 title=title,
                 slug=slug,
                 description=description,
-                status=status,
                 user=request.user,
-                post_type="post"
+                start_date=start_date,
+                end_date=end_date,
+                no_of_people=no_of_people,
+                location=locations,
+                budget=budget,
             )
 
-            post.category.set(categories)
-            post.clean_fields()
-            post.save()
+            event.category.set(categories)
+            event.clean_fields()
+            event.save()
             
-            messages.success(request, "Post added successfully")
-            return redirect('dashboard:editpost', id=post.id)
+            messages.success(request, "Event added successfully")
+            return redirect('dashboard:editpost', id=event.id)
         except Exception as e:
             messages.error(request, str(e))
 
-        return render(request, 'dashboard/post/add.html', context={
+        return render(request, 'dashboard/events/add.html', context={
             "postid" : None,
             "title" : title,
             "slug" : slug,
             "description" : description,
-            "status" : status
+            "categories" : categories,
+            "start_date" : start_date,
+            "end_date" : end_date,
+            "no_of_people" : no_of_people,
+            "locations" : locations,
+            "budget" : budget,
         })
     
 class EventAjaxView(View):
     
-    def get_title(self, title, post_id, username):
+    def get_title(self, title, event_id, username):
         return f'''
             <div class="course_group">
                 <div class="content">
@@ -74,8 +86,8 @@ class EventAjaxView(View):
         '''
     
     
-    def get_action(self, post_id):
-        edit_url = reverse('dashboard:editpost', kwargs={'id': post_id})
+    def get_action(self, event_id):
+        edit_url = reverse('dashboard:editpost', kwargs={'id': event_id})
         delete_url = reverse('dashboard:delete')
         backurl = reverse('dashboard:posts')
         return f'''
@@ -83,7 +95,7 @@ class EventAjaxView(View):
                 <a href="{edit_url}" class="btn btn-success btn-sm">Edit</a>
                 <a href="" class="btn btn-warning btn-sm">View</a>
 
-                <input type="hidden" name="_selected_id" value="{post_id}" />
+                <input type="hidden" name="_selected_id" value="{event_id}" />
                 <input type="hidden" name="_selected_type" value="post" />
                 <input type="hidden" name="_back_url" value="{backurl}" />
                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -123,16 +135,15 @@ class EventAjaxView(View):
 
 class EditEventView(View):
     def get(self, request, *args, **kwargs):
-        postid = kwargs.get('id')
+        event_id = kwargs.get('id')
         
         try:
-            post = get_object_or_404(Events, id=postid)
-            return render(request, 'dashboard/post/add.html', context={
+            post = get_object_or_404(Events, id=event_id)
+            return render(request, 'dashboard/events/add.html', context={
                 "postid" : post.id,
                 "title" : post.title,
                 "slug" : post.slug,
                 "description" : post.description,
-                "status" : post.status,
                 "category" : post.category.all
             })
         except Exception as e:
@@ -145,19 +156,18 @@ class EditEventView(View):
         title = request.POST.get('title')
         slug = request.POST.get('slug')
         description = request.POST.get('description')
-        status = request.POST.get('status')
-        postid = kwargs.get('id')
+        eventid = kwargs.get('id')
         categories = request.POST.getlist('category[]')
         
+        
         try:
-            post = get_object_or_404(Events, id=postid)
+            post = get_object_or_404(Events, id=event_id)
             if not title:
                 raise Exception("Event title is required")
             
             post.title = title
             post.slug = slug
             post.description = description
-            post.status = status
             post.category.set(categories)
 
             post.save()
@@ -165,4 +175,4 @@ class EditEventView(View):
         except Exception as e:
             messages.error(request, str(e))
 
-        return redirect('dashboard:editevent', id=postid)
+        return redirect('dashboard:editevent', id=event_id)
