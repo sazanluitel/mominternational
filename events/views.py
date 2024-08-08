@@ -7,8 +7,6 @@ from django.contrib import messages
 class FrontPage(View):
     def get(self, request, *args, **kwargs):
      return render(request, 'index.html')
-    
-    
 
 def AddEvent(request):
     if request.method == 'POST':

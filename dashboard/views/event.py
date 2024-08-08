@@ -28,13 +28,11 @@ class AddEventView(View):
     def post(self, request, *args, **kwargs):
         title = request.POST.get('title')
         slug = request.POST.get('slug')
-        description = request.POST.get('description')
-        categories = request.POST.getlist('category[]')
         start_date = request.POST.get('start_date')
         end_date = request.POST.get('end_date')
-        no_of_people = request.POST.get('no_of_people')
-        locations = request.POST.get('locations')
-        budget = request.POST.get('budget')
+        location = request.POST.get('location')
+        entry_charge = request.POST.get('entry_charge')
+        description = request.POST.get('description')
         
         try:
             if not title:
@@ -43,16 +41,15 @@ class AddEventView(View):
             event = Events(
                 title=title,
                 slug=slug,
-                description=description,
                 user=request.user,
                 start_date=start_date,
                 end_date=end_date,
-                no_of_people=no_of_people,
-                location=locations,
-                budget=budget,
+                location=location,
+                entry_charge=entry_charge,
+                description=description,
+
             )
 
-            event.category.set(categories)
             event.clean_fields()
             event.save()
             
@@ -62,16 +59,14 @@ class AddEventView(View):
             messages.error(request, str(e))
 
         return render(request, 'dashboard/events/add.html', context={
-            "postid" : None,
+            "eventid" : None,
             "title" : title,
             "slug" : slug,
             "description" : description,
-            "categories" : categories,
             "start_date" : start_date,
             "end_date" : end_date,
-            "no_of_people" : no_of_people,
-            "locations" : locations,
-            "budget" : budget,
+            "location" : location,
+            "entry_charge" : entry_charge,
         })
     
 class EventAjaxView(View):
@@ -138,13 +133,17 @@ class EditEventView(View):
         event_id = kwargs.get('id')
         
         try:
-            post = get_object_or_404(Events, id=event_id)
+            event = get_object_or_404(Events, id=event_id)
             return render(request, 'dashboard/events/add.html', context={
-                "postid" : post.id,
-                "title" : post.title,
-                "slug" : post.slug,
-                "description" : post.description,
-                "category" : post.category.all
+
+            "eventid" : event.id,
+            "title" : event.title,
+            "slug" : event.slug,
+            "description" : event.description,
+            "start_date" : event.start_date,
+            "end_date" : event.end_date,
+            "location" : event.location,
+            "entry_charge" : event.entry_charge,
             })
         except Exception as e:
             messages.error(request, str(e))
@@ -155,24 +154,29 @@ class EditEventView(View):
     def post(self, request, *args, **kwargs):
         title = request.POST.get('title')
         slug = request.POST.get('slug')
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+        location = request.POST.get('location')
+        entry_charge = request.POST.get('entry_charge')
         description = request.POST.get('description')
         eventid = kwargs.get('id')
-        categories = request.POST.getlist('category[]')
-        
         
         try:
-            post = get_object_or_404(Events, id=event_id)
+            event= get_object_or_404(Events, id=eventid)
             if not title:
                 raise Exception("Event title is required")
             
-            post.title = title
-            post.slug = slug
-            post.description = description
-            post.category.set(categories)
-
-            post.save()
+            event.title = title
+            event.slug = slug
+            event.start_date = start_date
+            event.end_date = end_date
+            event.location = location
+            event.entry_charge = entry_charge
+            event.description = description
+    
+            event.save()
             messages.success(request, "Event updated successfully")
         except Exception as e:
             messages.error(request, str(e))
 
-        return redirect('dashboard:editevent', id=event_id)
+        return redirect('dashboard:editevent', id=eventid)
